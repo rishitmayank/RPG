@@ -1,0 +1,74 @@
+class Character:
+    def __init__(self, name):
+        self.name = name
+        self.health = 100
+        self.mp = 100
+
+    def print_info(self):
+        print(f"{self.name}\tHP: {self.health}\tMP: {self.mp}")
+
+    def set_stats(self, health, mp):
+        self.health = health
+        self.mp = mp
+
+
+class Player(Character):
+    def __init__(self, nickname, lives):
+        super().__init__("Player")
+        self.nickname = nickname
+        self.lives = lives
+
+    def print_info(self):
+        print(f"{self.name}\tHP: {self.health}\tMP: {self.mp}\tNickname: {self.nickname}\tLives:{self.lives}")
+
+    def is_alive(self):
+        if self.lives > 0:
+            print(f"{self.nickname} lives on!")
+            return True
+        else:
+            print(f"{self.nickname} has expired!")
+            return False
+
+
+ian = Player("Ian the mighty", 3)
+ian.print_info()
+print(ian.is_alive())
+
+
+class Enemy(Character):
+    def __init__(self, name, type, strength):
+        super().__init__(name)
+        self.type = type
+        self.strength = strength
+
+    def print_info(self):
+        print(f"{self.name}\tHP: {self.health}\tMP: {self.mp}\tType: {self.type}\tStrength: {self.strength}")
+
+
+class Orc(Enemy):
+    def __init__(self, speed):
+        super().__init__("Orc", "Orc", 200)
+        self.speed = speed
+
+    def print_info(self):
+        print(f"{self.name}\tHP: {self.health}\tMP: {self.mp}\tType: {self.type}\tStrength: {self.strength}\tSpeed: {self.speed}")
+
+
+sharron = Orc(250)
+gary = Orc(205)
+
+sharron.print_info()
+gary.print_info()
+
+
+class Vampire(Enemy):
+    def __init__(self, day):
+        super().__init__("Vampire", "Vampire", 150)
+        self.day = day
+
+    def print_info(self):
+        print(f"{self.name}\tHP: {self.health}\tMP: {self.mp}\tType: {self.type}\tStrength: {self.strength}\tDay: {self.day}")
+
+
+eric = Vampire(False)
+eric.print_info()
